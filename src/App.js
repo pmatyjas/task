@@ -100,7 +100,7 @@ class App extends Component {
             <div className="App">
                 <Panel sortByAge={this.sortByAge} sortByName={this.sortByName} sortBySpecies={this.sortBySpecies}/>
                 <Pet pets={this.state.pets} deletePet={this.deletePet}/>
-                <button className='addButton' onClick={this.showForm}>Dodaj</button>
+                <button className='addButton' onClick={this.showForm}>+</button>
                 {this.state.showForm ? <Form addPet={this.addPet}/> : null}
             </div>
         );

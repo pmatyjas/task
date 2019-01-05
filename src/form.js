@@ -41,6 +41,10 @@ class Form extends React.Component {
         event.preventDefault();
         this.props.addPet(this.state)
     }
+    deleteFood = (event) => {
+        event.preventDefault();
+    }
+
     render() {
 
 
@@ -54,8 +58,10 @@ class Form extends React.Component {
                 <input type="text" value={this.state.food} onChange={this.handleFood}/>
                 <button className="addButton addFoodButton" onClick={this.addFood}>+</button>
                 {this.state.extrafood ?
-                    <div className="form__extraFood">{this.state.food}
-                        <button className="form__deleteFood"> X </button>
+                    <div className="form__extraFood-container">
+                        <div className="form__extraFood">{this.state.food}
+                            <button className="form__deleteFood" onClick={this.deleteFood}> -</button>
+                        </div>
                     </div> : null}
                 <button type='submit' className="panel__button">Dodaj</button>
             </form>

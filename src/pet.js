@@ -37,7 +37,7 @@ class Pet extends React.Component {
                     </div>
                     <button className='pet__deleteButton' onClick={() => {
                         this.deletePet(index)
-                    }}>Usun
+                    }}>X
                     </button>
                 </div>
             )
