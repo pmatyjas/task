@@ -14,7 +14,6 @@ class Pet extends React.Component {
             let fav;
             if (favFoods !== undefined) {
                 fav = favFoods.map((fav, index) => {
-                    console.log(fav, index);
                     return <li key={index}>{fav}</li>
                 })
             }
@@ -25,7 +24,7 @@ class Pet extends React.Component {
                         <img alt="pet" src={pet.photo}/>
                     </div>
                     <div className='pet__description'>
-                        <p className='pet__name'>Imie: {pet.name} , {index}</p>
+                        <p className='pet__name'>Imie: {pet.name} </p>
                         <p className='pet__age'>Wiek: {(new Date()).getFullYear() - pet.birthYear} lat</p>
                         <p className='pet__species'>Gatunek: {pet.species}</p>
                         <div className='pet__foods'>

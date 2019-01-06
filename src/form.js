@@ -2,65 +2,93 @@ import React from "react";
 
 class Form extends React.Component {
     state = {
-        name: 'Imie',
-        age: 'Wiek',
-        species: 'Gatunek',
-        photo: 'Url',
-        food: 'Jedzenie',
-        extrafood: false
+        name: '',
+        birthYear: '',
+        species: '',
+        photo: '',
+        favFood: '',
+        extrafood: false,
+        errors: {}
     };
 
-    handleName = (event) => {
-        this.setState({name: event.target.value})
-    };
-    handleAge = (event) => {
-        this.setState({age: event.target.value})
-    };
-    handleSpecies = (event) => {
-        this.setState({species: event.target.value})
-    };
-    handleUrl = (event) => {
-        this.setState({url: event.target.value})
-    };
-    handleFood = (event) => {
-        this.setState({food: event.target.value})
+    handleChange = (event) => {
+        this.setState({
+            [event.target.id]: event.target.value
+        })
     };
 
     addFood = (event) => {
         this.setState({
             extrafood: true
-        })
+        });
         event.preventDefault();
-        console.log(this.state.food)
-        let favFoods = [];
-        favFoods.push(this.state.food)
-        console.log(favFoods)
+        console.log(this.state.favFood)
+        // let favFoods = [];
+        // favFoods.push(this.state.food)
+        // console.log(favFoods)
+    };
+
+    handleValidation = () =>{
+        let formisValid = true;
+        let errors = {};
+
+
+        if (!this.state.name){
+            formisValid = false;
+            errors["name"] = "Wpisz imię";
+
+        }
+
+        if (!this.state.birthYear){
+            errors["birthYear"] = "Wpisz wiek";
+            formisValid = false
+        }
+        if (!this.state.species){
+            errors["species"] = "Wpisz gatunek";
+            formisValid = false
+        }
+        if (!this.state.photo){
+            errors["photo"] = "Uzupełnij Url";
+            formisValid = false
+        }
+        this.setState({errors: errors});
+        return formisValid
+
     };
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addPet(this.state)
-    }
+        this.handleValidation() ? this.props.addPet(this.state) : console.log ('ERROR');
+    };
     deleteFood = (event) => {
         event.preventDefault();
-    }
+    };
+
+    closeForm = (e) => {
+        if (e.keyCode === 27) {
+            this.props.closeForm(e)
+        }
+    };
 
     render() {
 
-
-        return <div className="form__container">
+        return <div className="form__container" tabIndex="1" onKeyDown={(e) => this.closeForm(e)}>
 
             <form className="form" onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.name} onChange={this.handleName}/>
-                <input type="text" value={this.state.age} onChange={this.handleAge}/>
-                <input type="text" value={this.state.species} onChange={this.handleSpecies}/>
-                <input type="text" value={this.state.url} onChange={this.handleUrl}/>
-                <input type="text" value={this.state.food} onChange={this.handleFood}/>
+                <input type="text" id='name' value={this.state.name} onChange={this.handleChange} placeholder='Imię'/>
+                <span className='name__error' >{this.state.errors["name"]} </span>
+                <input type="number" id='birthYear' value={this.state.birthYear} onChange={this.handleChange} placeholder='Wiek'/>
+                <span  className='birthYear__error' >{this.state.errors["birthYear"]} </span>
+                <input type="text" id='species' value={this.state.species} onChange={this.handleChange} placeholder='Gatunek'/>
+                <span  className='species__error' >{this.state.errors["species"]} </span>
+                <input type="text" id='photo' value={this.state.photo} onChange={this.handleChange} placeholder='Url'/>
+                <span  className='photo__error'>{this.state.errors["photo"]} </span>
+                <input type="text" id='favFood' value={this.state.favFood} onChange={this.handleChange} placeholder='Jedzenie'/>
                 <button className="addButton addFoodButton" onClick={this.addFood}>+</button>
                 {this.state.extrafood ?
                     <div className="form__extraFood-container">
-                        <div className="form__extraFood">{this.state.food}
-                            <button className="form__deleteFood" onClick={this.deleteFood}> -</button>
+                        <div className="form__extraFood">{this.state.favFood}
+                            <button className="form__deleteFood" onClick={this.deleteFood}>-</button>
                         </div>
                     </div> : null}
                 <button type='submit' className="panel__button">Dodaj</button>

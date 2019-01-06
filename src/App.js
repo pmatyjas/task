@@ -23,8 +23,6 @@ class App extends Component {
     }
 
     addPet = (formPet) => {
-        console.log('zapisywanie zwierzaka')
-        console.log(formPet)
         let pets = [...this.state.pets, formPet];
         this.setState({
             pets: pets
@@ -42,7 +40,6 @@ class App extends Component {
     }
 
     showForm = () => {
-        console.log('dodaje zwierzaka')
         this.setState({
             showForm: !this.state.showForm
         })
@@ -73,15 +70,12 @@ class App extends Component {
                 return a.name === b.name ? 0 : a.name > b.name ? -1 : 1;
             })
         }
-        console.log('sortuje imie')
         this.setState({
             sortedName: !this.state.sortedName
         })
     }
 
     sortBySpecies = (selected) => {
-        console.log("klikam select " + selected)
-
         let selectedPets = this.state.pets.filter(pet => {
             return (pet.species === selected);
         })
@@ -93,6 +87,12 @@ class App extends Component {
 
     }
 
+    closeForm = () => {
+        this.setState({
+            showForm: !this.state.showForm
+        })
+    }
+
     render() {
         console.log(this.state.pets);
 
@@ -101,7 +101,7 @@ class App extends Component {
                 <Panel sortByAge={this.sortByAge} sortByName={this.sortByName} sortBySpecies={this.sortBySpecies}/>
                 <Pet pets={this.state.pets} deletePet={this.deletePet}/>
                 <button className='addButton' onClick={this.showForm}>+</button>
-                {this.state.showForm ? <Form addPet={this.addPet}/> : null}
+                {this.state.showForm ? <Form addPet={this.addPet} closeForm={this.closeForm}/> : null}
             </div>
         );
     }

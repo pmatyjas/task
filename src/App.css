@@ -5,8 +5,7 @@
     font-size: 16px;
 }
 
-.panel {
-}
+.panel {}
 
 .panel__names {
     display: flex;
@@ -19,16 +18,21 @@
     margin-bottom: 15px;
 }
 
+.panel__button, .addButton, .pet__deleteButton, .form__deleteFood{
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .panel__button {
     width: 135px;
     height: 40px;
     margin-right: 10px;
-    border: none;
-    border-radius: 3px;
     background-color: #4cabef;
     box-shadow: 2px 2px 3px #1f9cf1;
-    color: #fff;
-    text-transform: uppercase;
+
 }
 
 .panel__select {
@@ -36,8 +40,7 @@
     height: 25px;
 }
 
-.petList {
-}
+.petList {}
 
 .pet {
     width: 760px;
@@ -63,17 +66,10 @@
     margin-left: 15px;
 }
 
-.pet__name {
-}
-
-.pet__age {
-}
-
-.pet__species {
-}
-
-.pet__foods {
-}
+.pet__name {}
+.pet__age {}
+.pet__species {}
+.pet__foods {}
 
 .pet__food-types {
     display: flex;
@@ -90,21 +86,15 @@
     width: 40px;
     height: 40px;
     margin-top: 15px;
-    border: none;
-    border-radius: 3px;
     background-color: #4cabef;
     box-shadow: 2px 2px 3px #1f9cf1;
-    color: #fff;
 }
 
 .pet__deleteButton {
     margin-top: 5px;
     width: 50px;
     height: 40px;
-    border: none;
-    border-radius: 3px;
     background-color: #f0504f;
-    color: #fff;
 }
 
 .form__container {
@@ -134,11 +124,40 @@
     flex-wrap: wrap;
 }
 
-.form input[type='text'], .form__extraFood-container {
+.form input[type='text'], .form input[type='number'], .form__extraFood-container {
     width: 370px;
     height: 65px;
     margin: 15px 10px;
+
+}
+.form input[type='text'], .form input[type='number']{
     border: 2px solid darkgrey;
+    outline-color: lightblue;
+    color: #757575;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 5px;
+    position: relative;
+}
+.form span{
+    position: absolute;
+    color: red;
+}
+span.name__error{
+    left: 170px;
+    top: 90px;
+}
+span.birthYear__error{
+    left: 550px;
+    top: 90px;
+}
+span.species__error{
+    left: 170px;
+    top: 200px
+}
+span.photo__error{
+    left: 550px;
+    top: 200px
 }
 
 .form__extraFood-container {
@@ -157,6 +176,7 @@
 .addFoodButton {
     width: 20px;
     height: 20px;
+
     position: absolute;
     left: 350px;
     top: 240px;
@@ -167,10 +187,7 @@
     width: 20px;
     height: 15px;
     background-color: #f0504f;
-    border: none;
-    border-radius: 3px;
-    color: #fff;
-    font-weight: bold;
+    margin-left: 10px;
 }
 
 .form .panel__button {
