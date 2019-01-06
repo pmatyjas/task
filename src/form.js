@@ -59,6 +59,9 @@ class Form extends React.Component {
     };
     deleteFood = (event) => {
         event.preventDefault();
+        this.setState({
+            extrafood: false
+        });
     };
 
     closeForm = (e) => {
