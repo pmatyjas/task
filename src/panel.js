@@ -2,13 +2,12 @@ import React from "react";
 
 class Panel extends React.Component {
     state = {
-        species: 'dog'
+        species: ''
     };
     handleSpecies = (e) => {
         this.setState({
             species: e.target.value
         });
-        console.log(e.target.value)
         this.props.sortBySpecies(e.target.value)
     };
 

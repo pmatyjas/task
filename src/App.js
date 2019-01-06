@@ -23,35 +23,34 @@ class App extends Component {
     }
 
     addPet = (formPet) => {
+        formPet.birthYear = new Date().getFullYear() - formPet.birthYear;
         let pets = [...this.state.pets, formPet];
         this.setState({
             pets: pets
         })
-    }
+    };
 
     deletePet = (index) => {
-        console.log(index)
         let pets = this.state.pets.filter((pet, i) => {
             return i !== index
-        })
+        });
         this.setState({
             pets: pets
         })
-    }
+    };
 
     showForm = () => {
         this.setState({
             showForm: !this.state.showForm
         })
 
-    }
+    };
 
     sortByAge = () => {
 
         this.setState({
             sortedAge: !this.state.sortedAge
-        })
-
+        });
         if (this.state.sortedAge === false) {
             this.state.pets.sort((a, b) => a.birthYear - b.birthYear);
         } else {
@@ -73,25 +72,29 @@ class App extends Component {
         this.setState({
             sortedName: !this.state.sortedName
         })
-    }
+    };
 
     sortBySpecies = (selected) => {
+
         let selectedPets = this.state.pets.filter(pet => {
             return (pet.species === selected);
-        })
+        });
 
         if (selected === "All") {
             selectedPets = this.state.pets
         }
         console.log(selectedPets)
 
-    }
+        // this.setState({
+        //     pets: selectedPets
+        // })
+    };
 
     closeForm = () => {
         this.setState({
             showForm: !this.state.showForm
         })
-    }
+    };
 
     render() {
         console.log(this.state.pets);

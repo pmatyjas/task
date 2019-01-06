@@ -23,9 +23,6 @@ class Form extends React.Component {
         });
         event.preventDefault();
         console.log(this.state.favFood)
-        // let favFoods = [];
-        // favFoods.push(this.state.food)
-        // console.log(favFoods)
     };
 
     handleValidation = () =>{
@@ -39,8 +36,8 @@ class Form extends React.Component {
 
         }
 
-        if (!this.state.birthYear){
-            errors["birthYear"] = "Wpisz wiek";
+        if ((!this.state.birthYear) || !(this.state.birthYear > 0) || (this.state.birthYear % 1 !== 0)){
+            errors["birthYear"] = "Uzupełnij liczbą całkowitą";
             formisValid = false
         }
         if (!this.state.species){
